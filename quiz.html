@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartQuizzer</title>
+    <link rel="stylesheet" href="CSS/quiz_page.css">
+    <link rel="stylesheet" href="CSS/custom.css">
+</head>
+<body >
+    <header class="bg-customGreen flex items-center text-white">
+        <!-- Left Section -->
+        <div class="name-img py-2 px-5 font-bold text-2xl flex flex-1">
+          <img src="Assessts/images/smart_img.png" alt="" width="40px" />
+          <div class="name self-center mx-2 text-xl md:text-2xl">
+            SmartQuizzer
+          </div>
+        </div>
+        <!-- Center Section -->
+        <div
+          class="feature-others-how_it_works hidden lg:flex gap-11 font-bold text-xl justify-center"
+        >
+          <a href="index.html"><div class="feature-link cursor-pointer">Home</div></a>
+          <div class="about-link cursor-pointer">About</div>
+          <div class="subscription cursor-pointer">Subscription</div>
+        </div>
+        <!-- Right Section -->
+        <div class="register lg:flex flex-1 justify-end hidden">
+          <button
+            class="bg-white text-customGreen mx-5 py-2 px-6 text-xl font-bold rounded-lg hover:bg-slate-100"
+          >
+            Register
+          </button>
+        </div>
+      </header>
+      <main class="bg-custombg py-12 h-[100vh] 
+      ">
+        <div class="questions mx-auto bg-white w-[60%] px-12 py-6 rounded-2xl ">
+          <div class="question-details-and-percenatge flex justify-between text-gray-500">
+            <div class="question-number">Question 2 of 4</div>
+            <div class="percenatge-of-complition">50% Complete</div>
+          </div>
+          <div class="question-workflow bg-gray-300 h-2 rounded-xl mt-3">
+            <div class="green-workflow bg-customGreen h-[100%] rounded-xl " style ="width:50%;"></div>
+          </div>
+          <div class="circle">
+            <div class="time">30</div>
+            <svg>
+               <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f0f0f0" stroke-width="20"></circle> 
+               <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgb(13,148,136)" stroke-width="8" transform="rotate(-90 50 50)"></circle>
+            </svg>
+        </div>
+        </div>
+      </main>
+      <script src="JS/quiz_maker.js"></script>
+</body>
+</html>
