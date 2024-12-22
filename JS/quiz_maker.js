@@ -1,12 +1,69 @@
 // this f(unction will make the questions
 let i = 0;
+let click = 0 ; 
 quiz_make();
 // to next the question
 
+// for checking whether the answer is correct or not if the answer would be correct then it would make him green or red according to the choden option 
+function checker(answer){
+  if (click == 1) {
+    return 
+  }
+  // In the case when user did not give the answer and time is out then we can take this step 
+  let obj = ['first','second' , 'third' , 'fourth'];
+  if(answer==-1){
+    let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
+    correct_answer.style.backgroundColor = '#E5F8E5';
+    click+=1
+    next_question();
+    return 
+  }
+  click = 1;
+  if(answer == quiz[i].ans){
+    let selected_option = document.querySelector(`#${obj[answer]}`);
+    selected_option.style.backgroundColor = '#E5F8E5';
+  }
+  else{
+    let selected_option = document.querySelector(`#${obj[answer]}`);
+    let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
+    selected_option.style.backgroundColor = '#FFEBEB';
+    correct_answer.style.backgroundColor = '#E5F8E5';
+  }
+  let time = timer();
+  clearInterval(time);
+  next_question();
+
+  
+}
+
+// this function will create next button dynamially and then will move into t=next question 
+function next_question(){
+  let options_html = document.querySelector(".main");
+  options_html.innerHTML += `<div class='flex justify-end'>
+                              <button
+                                      class="nextbutton text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
+                                    >
+                                    Next
+                              </button>
+                            </div>`;
+  // add event lsitener here 
+  let next_button = document.querySelector(".nextbutton");
+  next_button.addEventListener("click", function () {
+    i += 1;
+    quiz_make();
+  });
+}
 
 // to update the timer 
 function timer() {
-  const total_time = 30;
+  const total_time = 15;
+  let question_number = document.querySelector('.question-number');
+  let percentage_completion = document.querySelector('.percenatge-of-completion');
+  let percenatge_find = (i/quiz.length) *100;
+  percentage_completion.innerHTML = `${percenatge_find}% Complete`;
+  question_number.innerHTML = `Question ${i+1} of ${quiz.length}`
+  let percentage_line = document.querySelector('.green-workflow');
+  percentage_line.style.width =  `${percenatge_find}%`;
   let circle = document.querySelector(".circle");
   circle.innerHTML = `<div class="time text-2xl font-bold absolute mx-auto mt-6 text-customGreen  "></div>
           <svg class="w-full max-w-[80px] h-auto" viewBox="0 0 100 100">
@@ -46,45 +103,16 @@ function timer() {
 
     if (temp_time == 0) {
       clearInterval(x);
+      checker(-1);
     }
   }, 1000);
+  return x;
 }
 
-
-// for checking whether the answer is correct or not if the answer would be correct then it would make him green or red according to the choden option 
-function checker(answer){
-  let obj = ['first','second' , 'third' , 'fourth'];
-  
-  if(answer == quiz[i].ans){
-    let selected_option = document.querySelector(`#${obj[answer]}`);
-    selected_option.style.backgroundColor = '#E5F8E5';
-  }
-  else{
-    let selected_option = document.querySelector(`#${obj[answer]}`);
-    let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
-    selected_option.style.backgroundColor = '#FFEBEB';
-    correct_answer.style.backgroundColor = '#E5F8E5';
-  }
-
-  let options_html = document.querySelector(".main");
-  options_html.innerHTML += `<div class='flex justify-end'>
-                              <button
-                                      class="nextbutton text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
-                                    >
-                                    Next
-                              </button>
-                            </div>`;
-  // add event lsitener here 
-  let next_button = document.querySelector(".nextbutton");
-  next_button.addEventListener("click", function () {
-    alert("Button click hua saale");
-    i += 1;
-    quiz_make();
-  });
-}
 
 // this function will make the quiz 
 function quiz_make() {
+  click = 0;
   timer();
   //to get the element where we have to insert the qustions and the options and the button 
   let options_html = document.querySelector(".main");
