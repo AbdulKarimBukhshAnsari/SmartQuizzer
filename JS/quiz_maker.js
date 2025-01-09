@@ -1,24 +1,29 @@
-// this f(unction will make the questions
+// this function will make the questions
 let i = 0;
+// this is the variable which will deal with the timer 
+let x ;
+// this is the checker variable which will just check whether any option has been selected or not 
 let click = 0 ; 
 quiz_make();
 // to next the question
 
-// for checking whether the answer is correct or not if the answer would be correct then it would make him green or red according to the choden option 
+// for checking whether the answer is correct or not if the answer would be correct then it would make him green or red according to the chosen option 
 function checker(answer){
-  if (click == 1) {
+  if (click > 0 ) {
     return 
   }
   // In the case when user did not give the answer and time is out then we can take this step 
   let obj = ['first','second' , 'third' , 'fourth'];
   if(answer==-1){
+    console.log('Logical error');
     let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
     correct_answer.style.backgroundColor = '#E5F8E5';
+    // it will be incresed to make sure that when the time is out then the use can not check for other option or we can say can't click 
     click+=1
     next_question();
     return 
   }
-  click = 1;
+  click += 1;
   if(answer == quiz[i].ans){
     let selected_option = document.querySelector(`#${obj[answer]}`);
     selected_option.style.backgroundColor = '#E5F8E5';
@@ -29,8 +34,7 @@ function checker(answer){
     selected_option.style.backgroundColor = '#FFEBEB';
     correct_answer.style.backgroundColor = '#E5F8E5';
   }
-  let time = timer();
-  clearInterval(time);
+  clearInterval(x);
   next_question();
 
   
@@ -50,7 +54,9 @@ function next_question(){
   let next_button = document.querySelector(".nextbutton");
   next_button.addEventListener("click", function () {
     i += 1;
+    click = 0 ;
     quiz_make();
+
   });
 }
 
@@ -94,7 +100,7 @@ function timer() {
 
   let temp_time = total_time;
 
-  let x = setInterval(function () {
+  x = setInterval(function () {
     temp_time -= 1;
     timer.innerHTML = temp_time;
     let percentage = temp_time / total_time;
@@ -106,7 +112,7 @@ function timer() {
       checker(-1);
     }
   }, 1000);
-  return x;
+  
 }
 
 
