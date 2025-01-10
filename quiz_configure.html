@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&" />
+    <title>SmartQuizzer</title>
+</head>
+<body class="bg-custombg">
+    <header class="bg-customGreen flex items-center text-white">
+        <!-- Left Section -->
+        <div class="name-img py-2 px-5 font-bold text-2xl flex flex-1">
+          <img src="Assessts/images/smart_img.png" alt="" width="40px" />
+          <div class="name self-center mx-2 text-xl md:text-2xl">
+            SmartQuizzer
+          </div>
+        </div>
+        <!-- Center Section -->
+        <div
+          class="feature-others-how_it_works hidden lg:flex gap-11 font-bold text-xl justify-center"
+        >
+          <a href="index.html"
+            ><div class="feature-link cursor-pointer">Home</div></a
+          >
+          <div class="about-link cursor-pointer">About</div>
+          <div class="subscription cursor-pointer">Subscription</div>
+        </div>
+        <!-- Right Section -->
+        <div class="register lg:flex flex-1 justify-end hidden">
+          <button
+            class="bg-white text-customGreen mx-5 py-2 px-6 text-xl font-bold rounded-lg hover:bg-slate-100"
+          >
+            Register
+          </button>
+        </div>
+      </header>
+       <!-- Creating main part  -->
+        <div class="main">
+            <div class="form flex flex-col bg-white shadow-xl w-[80%] md:w-[70%] mx-auto my-10 lg:w-[50%] px-6 rounded-xl gap-3" >
+                <h2 class="configure mx-auto text-xl md:text-2xl lg:text-3xl font-bold text-purple-800 my-3">Configure Your Quiz</h2>
+                <!-- For Topic Selection  -->
+                <div class="topic-heading-main flex gap-1 pt-2">
+                    <span class="material-symbols-outlined text-customGreen">
+                        neurology
+                    </span>
+                    <h4 class="topic-heading text-purple-800 font-semibold">Topic</h4>
+                </div>
+                <input type="text" name="" placeholder="Enter the Quiz Topic" class="topic-of-quiz my-2 py-4 rounded-xl border-gray-300 px-4 border">
+                <!-- For Total Questions -->
+                <div class="question-heading-main flex gap-1 pt-4">
+                    <span class="material-symbols-outlined text-customGreen">
+                        tag
+                    </span>
+                    <h4 class="question-heading text-purple-800 font-semibold">Total Question</h4>
+                </div>
+                <select class="topic-of-quiz my-2 py-4 rounded-xl border-gray-300 px-4 border">
+                    <option value="5">5</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                </select>
+                <!-- For the Complexity level  -->
+                 <div class="complexity-selection">
+                    <div class="time-heading-main flex gap-1 pt-4">
+                        <span class="material-symbols-outlined text-customGreen">
+                            bolt 
+                        </span>
+                        <h4 class="time-heading text-purple-800 font-semibold">Complexity</h4>
+                    </div>
+                    <div class="complexity-buttons flex gap-3 pt-2">
+                        <button class="easy-button border border-gray-300 w-full py-4 hover:border hover:border-teal-500 rounded-lg transition-all duration-500">Easy</button>
+                        <button class="med-button border border-gray-300 w-full py-4 hover:border-teal-500 rounded-lg transition-all duration-500">Medium</button>
+                        <button class="hard-button border border-gray-300 w-full py-4 hover:border-teal-500 rounded-lg transition-all duration-500">Hard</button>
+                    </div>
+                 </div>
+                <!-- For time input  -->
+                <div class="time-heading-main flex gap-1 pt-4">
+                    <span class="material-symbols-outlined text-customGreen">
+                        nest_clock_farsight_analog
+                    </span>
+                    <h4 class="time-heading text-purple-800 font-semibold">Time per Question (seconds)</h4>
+                </div>
+                <select class="topic-of-quiz my-2 py-4 rounded-xl border-gray-300 px-4 border">
+                    <option value="5">5</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                </select>
+                <!-- Button for generating the Quiz -->
+                  <button class="bg-customGreen hover:bg-teal-900 py-5 text-xl font-bold text-white rounded-full my-5 transition-all duration-500 " >Generate Quiz</button>
+            </div>
+        </div>
+</body>
+</html>
