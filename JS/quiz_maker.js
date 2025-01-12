@@ -1,9 +1,13 @@
 // this function will make the questions
-let i = 0;
-// this is the variable which will deal with the timer 
+// this variable will check how much you have answered the question 
+let i =  (JSON.parse(sessionStorage.getItem('current-question')) || 0);
+// this is the variable which will deal with the timer reference .
 let x ;
 // this is the checker variable which will just check whether any option has been selected or not 
 let click = 0 ; 
+// this is the score variable which will track the score 
+let score = (JSON.parse(sessionStorage.getItem('score')) || 0);
+
 quiz_make();
 // to next the question
 
@@ -15,18 +19,24 @@ function checker(answer){
   // In the case when user did not give the answer and time is out then we can take this step 
   let obj = ['first','second' , 'third' , 'fourth'];
   if(answer==-1){
-    console.log('Logical error');
     let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
     correct_answer.style.backgroundColor = '#E5F8E5';
     // it will be incresed to make sure that when the time is out then the use can not check for other option or we can say can't click 
     click+=1
+    if(i < quiz.length - 1){
     next_question();
+    }
+    else{
+      submit_quiz();
+    }
     return 
   }
   click += 1;
   if(answer == quiz[i].ans){
     let selected_option = document.querySelector(`#${obj[answer]}`);
     selected_option.style.backgroundColor = '#E5F8E5';
+    score+=1
+    sessionStorage.setItem('score' , JSON.stringify(score));
   }
   else{
     let selected_option = document.querySelector(`#${obj[answer]}`);
@@ -35,7 +45,13 @@ function checker(answer){
     correct_answer.style.backgroundColor = '#E5F8E5';
   }
   clearInterval(x);
-  next_question();
+  // to make sure that at the end question it will show 
+  if(i < quiz.length - 1){
+    next_question();
+    }
+    else{
+      submit_quiz();
+   }
 
   
 }
@@ -54,18 +70,42 @@ function next_question(){
   let next_button = document.querySelector(".nextbutton");
   next_button.addEventListener("click", function () {
     i += 1;
+    sessionStorage.setItem('current-question' , JSON.stringify(i));
     click = 0 ;
     quiz_make();
 
   });
 }
 
+
+function submit_quiz(){
+  let options_html = document.querySelector(".main");
+  options_html.innerHTML += `<div class='flex justify-end'>
+                              <button
+                                      class="submit-button text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
+                                    >
+                                    Check The Result 
+                              </button>
+                            </div>`;
+  let submit_button = document.querySelector('.submit-button');
+  let result_body = document.querySelector('.result');
+  submit_button.addEventListener('click' , function(){
+    window.location.href = "result_page.html";
+
+
+
+  })
+  
+  
+
+}
+
 // to update the timer 
 function timer() {
-  const total_time = 15;
+  const total_time = JSON.parse(sessionStorage.getItem('time'));
   let question_number = document.querySelector('.question-number');
   let percentage_completion = document.querySelector('.percenatge-of-completion');
-  let percenatge_find = (i/quiz.length) *100;
+  let percenatge_find = Math.round((i/quiz.length) *100);
   percentage_completion.innerHTML = `${percenatge_find}% Complete`;
   question_number.innerHTML = `Question ${i+1} of ${quiz.length}`
   let percentage_line = document.querySelector('.green-workflow');
