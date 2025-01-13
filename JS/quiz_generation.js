@@ -37,7 +37,7 @@ hard_button.addEventListener('click' , function(e){
 
 
 
-const API_KEY = ''; 
+const API_KEY = process.env.API_KEY; 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
 // function to generate  the response 
