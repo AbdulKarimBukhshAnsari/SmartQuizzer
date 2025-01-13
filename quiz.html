@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartQuizzer</title>
     <link rel="stylesheet" href="CSS/output.css" />
-    <link rel="stylesheet" href="CSS/custom.css" />
   </head>
   <body class="bg-custombg">
     <header class="bg-customGreen flex items-center text-white">
@@ -20,13 +19,12 @@
       <div
         class="feature-others-how_it_works hidden lg:flex gap-11 font-bold text-xl justify-center"
       >
-        <a href="index.html"
+        <a href="index.html" class="home-link"
           ><div class="feature-link cursor-pointer">Home</div></a
         >
         <div class="about-link cursor-pointer">About</div>
         <div class="subscription cursor-pointer">Subscription</div>
       </div>
-      <!-- Right Section -->
       <div class="register lg:flex flex-1 justify-end hidden">
         <button
           class="bg-white text-customGreen mx-5 py-2 px-6 text-xl font-bold rounded-lg hover:bg-slate-100"
@@ -34,6 +32,7 @@
           Register
         </button>
       </div>
+
     </header>
     <!-- Main section which will contain the questions -->
     <main class="bg-custombg py-12 h-[100vh]">
@@ -60,6 +59,10 @@
         </div>
       </div>
     </main>
+    <script> 
+      let home_button = document.querySelector('.home-link');
+      home_button.addEventListener('click' , ()=> sessionStorage.clear());
+    </script>
     <script src="JS/questions.js"></script>
     <script src="JS/quiz_maker.js"></script>
   </body>

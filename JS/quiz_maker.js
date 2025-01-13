@@ -5,6 +5,8 @@ let i =  (JSON.parse(sessionStorage.getItem('current-question')) || 0);
 let x ;
 // this is the checker variable which will just check whether any option has been selected or not 
 let click = 0 ; 
+
+let answer_status ; 
 // this is the score variable which will track the score 
 let score = (JSON.parse(sessionStorage.getItem('score')) || 0);
 
@@ -19,6 +21,7 @@ function checker(answer){
   // In the case when user did not give the answer and time is out then we can take this step 
   let obj = ['first','second' , 'third' , 'fourth'];
   if(answer==-1){
+    answer_status = 'OOPs! Time is out , no worries..';
     let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
     correct_answer.style.backgroundColor = '#E5F8E5';
     // it will be incresed to make sure that when the time is out then the use can not check for other option or we can say can't click 
@@ -33,12 +36,14 @@ function checker(answer){
   }
   click += 1;
   if(answer == quiz[i].ans){
+    answer_status = 'Congartulations ! Your Answer is Correct..';
     let selected_option = document.querySelector(`#${obj[answer]}`);
     selected_option.style.backgroundColor = '#E5F8E5';
     score+=1
-    sessionStorage.setItem('score' , JSON.stringify(score));
+    
   }
   else{
+    answer_status = 'OOPs ! Your Answer is not correct ..';
     let selected_option = document.querySelector(`#${obj[answer]}`);
     let correct_answer = document.querySelector(`#${obj[quiz[i].ans]}`);
     selected_option.style.backgroundColor = '#FFEBEB';
@@ -59,9 +64,17 @@ function checker(answer){
 // this function will create next button dynamially and then will move into t=next question 
 function next_question(){
   let options_html = document.querySelector(".main");
-  options_html.innerHTML += `<div class='flex justify-end'>
+  options_html.innerHTML += `<div class='flex justify-between mt-4'>
+                              <div class="text-lg">
+                              <div class='text-teal-950'>
+                                ${answer_status}
+                              </div>
+                              <div class='mt-2'>
+                              ${quiz[i].explanation}
+                              </div>       
+                              </div>
                               <button
-                                      class="nextbutton text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
+                                      class="nextbutton self-start  flex-shrink-0  text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
                                     >
                                     Next
                               </button>
@@ -69,6 +82,10 @@ function next_question(){
   // add event lsitener here 
   let next_button = document.querySelector(".nextbutton");
   next_button.addEventListener("click", function () {
+    if(score>quiz.length){
+      score = quiz.length;
+    }
+    sessionStorage.setItem('score' , JSON.stringify(score));
     i += 1;
     sessionStorage.setItem('current-question' , JSON.stringify(i));
     click = 0 ;
@@ -80,20 +97,30 @@ function next_question(){
 
 function submit_quiz(){
   let options_html = document.querySelector(".main");
-  options_html.innerHTML += `<div class='flex justify-end'>
+  options_html.innerHTML += `<div class='flex justify-between mt-2'>
+                              <div class="text-lg">
+                              <div class='text-teal-950'>
+                                ${answer_status}
+                              </div>
+                              <div class='mt-2'>
+                              ${quiz[i].explanation
+                              }
+                              </div>       
+                              </div>
                               <button
-                                      class="submit-button text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
+                                      class="submit-button  self-start  flex-shrink-0  text-white bg-customGreen lg:py-4 lg:px-14 py-3 px-10 hover:bg-teal-700 rounded-lg font-bold lg:text-2xl text-xl mt-5"
                                     >
-                                    Check The Result 
+                                    Result 
                               </button>
                             </div>`;
   let submit_button = document.querySelector('.submit-button');
-  let result_body = document.querySelector('.result');
+
   submit_button.addEventListener('click' , function(){
+    if(score>quiz.length){
+      score = quiz.length;
+    }
+    sessionStorage.setItem('score' , JSON.stringify(score));
     window.location.href = "result_page.html";
-
-
-
   })
   
   

@@ -21,8 +21,8 @@
         <div
           class="feature-others-how_it_works hidden lg:flex gap-11 font-bold text-xl justify-center"
         >
-          <a href="index.html"
-            ><div class="feature-link cursor-pointer">Home</div></a
+          <a href="index.html" class="home-link "
+            ><div class="feature-link cursor-pointer" >Home</div></a
           >
           <div class="about-link cursor-pointer">About</div>
           <div class="subscription cursor-pointer">Subscription</div>
@@ -35,6 +35,7 @@
             Register
           </button>
         </div>
+        
       </header>
        <!-- Creating main part  -->
         <div class="main">
@@ -95,4 +96,8 @@
         </div>
 </body>
 <script  src="JS/quiz_generation.js"></script>
+<script> 
+  let home_button = document.querySelector('.home-link');
+  home_button.addEventListener('click' , ()=> sessionStorage.clear());
+</script>
 </html>
