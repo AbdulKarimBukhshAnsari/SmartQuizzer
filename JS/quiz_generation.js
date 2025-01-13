@@ -1,4 +1,4 @@
-import {API_KEY} from './config.js'
+import API_KEY from './config.js'
 
 // taking all the things from the HTML 
 let topic_of_quiz_input = document.querySelector('.topic-of-quiz');
