@@ -1,3 +1,5 @@
+import {API_KEY} from './config.js'
+
 // taking all the things from the HTML 
 let topic_of_quiz_input = document.querySelector('.topic-of-quiz');
 let total_time = document.querySelector('.total-time');
@@ -37,7 +39,7 @@ hard_button.addEventListener('click' , function(e){
 
 
 
-const API_KEY = ''; 
+// const API_KEY = ''; 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
 // function to generate  the response 
